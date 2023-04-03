@@ -27,3 +27,6 @@ vim.g.mapleader = "<Space>"
 vim.g.airline_powerline_fonts = 1
 vim.o.wildmode = 'full' 
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+

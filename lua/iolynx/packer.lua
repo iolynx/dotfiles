@@ -52,7 +52,7 @@ return require('packer').startup(function(use)
   end
   })
 
-  use('preservim/nerdtree')
+  --use('preservim/nerdtree')
    
   use('jiangmiao/auto-pairs')
   use({
@@ -69,6 +69,10 @@ return require('packer').startup(function(use)
           -- config goes here
       end,
   }
+
+  use {'nvim-tree/nvim-tree.lua'}
+
+  use {'nvim-tree/nvim-web-devicons'}
 
 
 end)
