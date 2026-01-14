@@ -1,0 +1,19 @@
+[manager]
+show_hidden = true
+
+[opener]
+pdf = [ 
+  { run = 'zen-browser "$@" --new-tab', orphan=true, desc="Open with Zen" }
+]
+
+pptx = [
+  { run = 'xdg-open "$@"', orphan = true, desc="XDG Open"}
+]
+
+[open]
+rules = [
+  { name = "*.pdf", use = "pdf" },
+  { name = "*.pptx", use = "open"},
+  { name = "*.ppt", use = "open"},
+  { name = "*.docx", use = "open"}
+]

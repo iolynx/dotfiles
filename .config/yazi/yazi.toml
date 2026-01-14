@@ -1,0 +1,27 @@
+[mgr]
+show_hidden = true
+
+[opener]
+pdf = [ 
+  { run = 'zen-browser "$@" --new-tab', orphan=true, desc="Open with Zen" }
+]
+
+open = [
+  { run = 'xdg-open "$@"', orphan = true, desc="XDG Open"}
+]
+
+edit = [
+  { run = '$EDITOR "$@"', orphan = true, desc="Open with Editor" }
+]
+
+
+[open]
+rules = [
+  { name = "*.pdf", use = "pdf" },
+  { name = "*.pptx", use = "open"},
+  { name = "*.ppt", use = "open"},
+  { name = "*.docx", use = "open"},
+  { name = "*.odt", use = "open"},
+  { name = "*.txt", use = "edit"},
+  { name = "*", use = "edit"}
+]

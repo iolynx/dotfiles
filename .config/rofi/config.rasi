@@ -1,0 +1,18 @@
+configuration {
+ display-drun: "Apps: ";
+ display-window: "Windows: ";
+ drun-display-format: "{icon} {name}";
+ font: "Inter 14";
+ modi: "window,run,drun,emoji,calc";
+ show-icons: true;
+ icon-theme: "Papirus";
+}
+
+
+
+// @theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+
+// @theme "/dev/null"
+
+@theme "~/.config/rofi/main-theme.rasi"
+

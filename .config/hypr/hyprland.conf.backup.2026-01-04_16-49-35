@@ -1,0 +1,484 @@
+################
+### MONITORS ###
+################
+
+# See https://wiki.hyprland.org/Configuring/Monitors/
+
+# See https://wiki.hyprland.org/Configuring/Monitors/
+monitor = eDP-1,1920x1080@144,0x0,1
+# monitor = HDMI-A-1,1920x1080@60,0x0,1
+
+xwayland {
+    force_zero_scaling = true
+}
+
+###################
+### MY PROGRAMS ###
+###################
+
+# See https://wiki.hyprland.org/Configuring/Keywords/
+
+# Set programs that you use
+#$terminal = wezterm
+$terminal = kitty
+$fileManager = thunar
+$browser = zen-browser
+$launcher = ulauncher
+# $launcher = albert
+# $launcher = walker
+
+$menu = rofi -show drun
+$emoji = rofi -show emoji -no-fixed-num-lines
+$calc = rofi -show calc
+$window = rofi -show window
+# $clipboard = rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+$powermenu = ~/.local/bin/power-menu.sh
+$clipboard = copyq
+
+
+#################
+### AUTOSTART ###
+#################
+
+# Autostart necessary processes (like notifications daemons, status bars, etc.)
+# Or execute your favorite apps at launch like this:
+
+exec-once = waybar 
+exec-once = nm-applet 
+#  exec-once = $launcher & disown 
+exec-once = ~/Personal/bazooka/target/debug/bazooka --service
+exec-once = hyprpaper
+exec-once = copyq --start-server
+exec-once = rog-control-center & disown
+exec-once = swaync
+exec-once = "avizo-service"
+exec-once = hyprswitch init --show-title --size-factor 5.4 & 
+exec-once = nvibrant 512 512 800
+exec-once = ~/.config/hypr/scripts/battery-alert.sh
+
+# this is if we're using walker
+# exec-once = $launcher --gapplication-service & disown
+
+
+exec-once = gsettings set org.gnome.desktop.interface cursor-theme BreezeX-RosePine-Linux
+exec-once = gsettings set org.gnome.desktop.interface cursor-size 34
+exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+# Opening apps 
+exec-once = [workspace 1 silent] $browser
+exec-once = [workspace 2 silent] $terminal
+exec-once = [workspace 8 silent] spotify-launcher
+exec-once = [workspace 4 silent] /usr/bin/ferdium %U
+# exec-once = [workspace 4 silent] ~/.local/bin/WALC.AppImage
+# exec-once = [workspace 4 silent] ferdium
+# exec-once = [workspace 10 silent] flatpak run dev.vencord.Vesktop
+
+# exec-once = $terminal
+# exec-once = waybar & hyprpaper & firefox
+
+
+#############################
+### ENVIRONMENT VARIABLES ###
+#############################
+
+# See https://wiki.hyprland.org/Configuring/Environment-variables/
+
+# env = XCURSOR_SIZE,24
+# env = HYPRCURSOR_SIZE,24
+env = LIBVA_DRIVER_NAME,nvidia
+env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+# env = HYPRCURSOR_SIZE,34
+env = XCURSOR_SIZE,32
+env = HYPRCURSOR_THEME,rose-pine-hyprcursor
+env = HYPRCURSOR_SIZE,32
+env = TERM, wezterm
+env = QT_QPA_PLATFORM,wayland
+env = QT_AUTO_SCREEN_SCALE_FACTOR,1
+
+
+
+#####################
+### LOOK AND FEEL ###
+#####################
+
+# Refer to https://wiki.hyprland.org/Configuring/Variables/
+
+# https://wiki.hyprland.org/Configuring/Variables/#general
+general {
+    gaps_in = 4
+    gaps_out = 8
+
+    border_size = 1
+
+    # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
+    col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
+    col.inactive_border = rgba(595959aa)
+
+    # Set to true enable resizing windows by clicking and dragging on borders and gaps
+    resize_on_border = false
+
+    # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
+    allow_tearing = false
+
+    layout = dwindle
+}
+
+# https://wiki.hyprland.org/Configuring/Variables/#decoration
+decoration {
+    rounding = 12
+
+    # Change transparency of focused and unfocused windows
+    active_opacity = 1
+    inactive_opacity = 0.85
+
+    dim_inactive = 1
+    dim_strength = 0.08
+
+    shadow {
+        enabled = true
+        range = 4
+        render_power = 3
+        color = rgba(1a1a1aee)
+    }
+
+    # https://wiki.hyprland.org/Configuring/Variables/#blur
+    blur {
+        enabled = true
+        size = 4
+        passes = 4
+        brightness = 0.78
+        vibrancy = 0.3
+    }
+
+}
+
+cursor {
+    no_hardware_cursors = true
+    enable_hyprcursor = true
+}
+
+
+# https://wiki.hyprland.org/Configuring/Variables/#animations
+animations {
+    enabled = yes, please :)
+
+    # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+
+    bezier = easeOutQuint,0.23,1,0.32,1
+    bezier = easeInOutCubic,0.65,0.05,0.36,1
+    bezier = linear,0,0,1,1
+    bezier = almostLinear,0.5,0.5,0.75,1.0
+    bezier = quick,0.15,0,0.1,1
+    bezier = overshot, 0.05, 0.9, 0.1, 1.1
+
+
+    animation = global, 1, 10, default
+    animation = border, 1, 5.39, easeOutQuint
+    animation = windows, 1, 4.79, easeOutQuint
+    animation = windowsIn, 1, 4.1, overshot, popin 60%
+    animation = windowsOut, 1, 1.49, linear, popin 50%
+    animation = fadeIn, 1, 1.73, almostLinear
+    animation = fadeOut, 1, 1.46, almostLinear
+    animation = fade, 1, 3.03, quick
+    animation = layers, 1, 3.81, easeOutQuint
+    animation = layersIn, 1, 4, easeOutQuint, fade
+    animation = layersOut, 1, 1.5, linear, fade
+    animation = fadeLayersIn, 1, 1.79, almostLinear
+    animation = fadeLayersOut, 1, 1.39, almostLinear
+    animation = workspaces, 1, 1.94, almostLinear, fade
+    animation = workspacesIn, 1, 0.99, almostLinear, fade
+    animation = workspacesOut, 1, 0.99, almostLinear, fade
+}
+
+# Ref https://wiki.hyprland.org/Configuring/Workspace-Rules/
+# "Smart gaps" / "No gaps when only"
+# uncomment all if you wish to use that.
+# workspace = w[tv1], gapsout:0, gapsin:0
+# workspace = f[1], gapsout:0, gapsin:0
+# windowrulev2 = bordersize 0, floating:0, onworkspace:w[tv1]
+# windowrulev2 = rounding 0, floating:0, onworkspace:w[tv1]
+# windowrulev2 = bordersize 0, floating:0, onworkspace:f[1]
+# windowrulev2 = rounding 0, floating:0, onworkspace:f[1]
+
+# See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
+dwindle {
+    pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+    preserve_split = true # You probably want this
+}
+
+# See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
+master {
+    new_status = master
+}
+
+# https://wiki.hyprland.org/Configuring/Variables/#misc
+
+misc {
+    force_default_wallpaper = 1 
+    disable_hyprland_logo = true
+    font_family = IosevkaNerdFont
+    middle_click_paste = false
+    enable_anr_dialog = false
+}
+
+
+#############
+### INPUT ###
+#############
+
+# https://wiki.hyprland.org/Configuring/Variables/#input
+input {
+    kb_layout = us
+    kb_variant =
+    kb_model =
+    kb_options =
+    kb_rules =
+
+    follow_mouse = 2
+
+    sensitivity = 0.02 # -1.0 - 1.0
+    accel_profile = adaptive
+
+
+
+    touchpad {
+        natural_scroll = true
+        scroll_factor = 0.65
+    }
+}
+
+# https://wiki.hyprland.org/Configuring/Variables/#gestures
+gestures {
+    workspace_swipe_forever = false
+}
+
+# Example per-device config
+# See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
+device {
+    name = epic-mouse-v1
+    sensitivity = 0.1
+}
+
+
+###################
+### KEYBINDINGS ###
+###################
+
+# See https://wiki.hyprland.org/Configuring/Keywords/
+$mainMod = ALT # Sets "Windows" key as main modifier
+$sideMod = SUPER
+
+# Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
+bind = $mainMod, RETURN, exec, $terminal
+bind = $mainMod, F, exec, $browser
+bind = $mainMod, Q, killactive,
+bind = $sideMod, M, exit,
+bind = $mainMod, E, exec, $fileManager
+bind = $mainMod, V, togglefloating,
+# bind = $mainMod, Space, exec, $launcher toggle
+# bind = $mainMod, Space, exec, $launcher
+bind = $mainMod, Space, exec, ~/Personal/bazooka/target/debug/bazooka 
+bind = $sideMod, P, exec, hyprlock
+# bind = $mainMod, J, togglesplit, # dwindle
+bind = SUPER_SHIFT, W, exec, killall waybar && waybar && disown
+bind = SUPER_SHIFT, C, exec, hyprpicker -a
+bind = $sideMod, C, exec, hyprpicker -a --format=rgb
+bind = SUPER_SHIFT, V, exec, nvibrant 512 512 800
+bind = $sideMod, F, fullscreen
+
+# must add a keybind to spawn htop or mission centre when control shift escape
+
+# Rofi binds
+# bind = $mainMod, SPACE, exec, $menu
+bind = $sideMod, PERIOD, exec, $emoji
+# bind = $mainMod, C, exec, $calc
+bind = $sideMod, Q, exec, $powermenu
+bind = $SUPER_SHIFT, O, exec, hyprshade off
+
+
+# theres a keybind built in for this
+bind = $sideMod, V, exec, $clipboard show
+
+# Screenshots Using Flameshot
+windowrule = noanim, class:^(flameshot)$
+windowrule = float, class:^(flameshot)$
+windowrule = move 0 0, class:^(flameshot)$
+windowrule = pin, class:^(flameshot)$
+windowrule = noinitialfocus, class:^(flameshot)$
+# set this to your leftmost monitor id, otherwise you have to move your cursor to the leftmost monitor
+# before executing flameshot
+windowrule = monitor 1, class:^(flameshot)$
+bind = SUPER_SHIFT, S, exec, XDG_CURRENT_DESKTOP=sway flameshot gui
+
+
+# Move focus with mainMod + arrow keys
+bind = $sideMod, left, movefocus, l
+bind = $sideMod, right, movefocus, r
+bind = $sideMod, up, movefocus, u
+bind = $sideMod, down, movefocus, d
+
+# Move focus with mainMod + vimkeys
+bind = $sideMod, h, movefocus, l
+bind = $sideMod, l, movefocus, r
+bind = $sideMod, k, movefocus, u
+bind = $sideMod, j, movefocus, d
+
+# Switch workspaces with mainMod + [0-9]
+bind = $mainMod, 1, workspace, 1
+bind = $mainMod, 2, workspace, 2
+bind = $mainMod, 3, workspace, 3
+bind = $mainMod, 4, workspace, 4
+bind = $mainMod, 5, workspace, 5
+bind = $mainMod, 6, workspace, 6
+bind = $mainMod, 7, workspace, 7
+bind = $mainMod, 8, workspace, 8
+bind = $mainMod, 9, workspace, 9
+bind = $mainMod, 0, workspace, 10
+bind = $mainMod, MINUS, workspace, 11
+
+# Move active window to a workspace with mainMod + SHIFT + [0-9]
+bind = $mainMod SHIFT, 1, movetoworkspace, 1
+bind = $mainMod SHIFT, 2, movetoworkspace, 2
+bind = $mainMod SHIFT, 3, movetoworkspace, 3
+bind = $mainMod SHIFT, 4, movetoworkspace, 4
+bind = $mainMod SHIFT, 5, movetoworkspace, 5
+bind = $mainMod SHIFT, 6, movetoworkspace, 6
+bind = $mainMod SHIFT, 7, movetoworkspace, 7
+bind = $mainMod SHIFT, 8, movetoworkspace, 8
+bind = $mainMod SHIFT, 9, movetoworkspace, 9
+bind = $mainMod SHIFT, 0, movetoworkspace, 10
+bind = $mainMod SHIFT, MINUS, movetoworkspace, 11
+
+#Move active window to workspace silently
+bind = $sideMod SHIFT, 1, movetoworkspacesilent, 1
+bind = $sideMod SHIFT, 2, movetoworkspacesilent, 2
+bind = $sideMod SHIFT, 3, movetoworkspacesilent, 3
+bind = $sideMod SHIFT, 4, movetoworkspacesilent, 4
+bind = $sideMod SHIFT, 5, movetoworkspacesilent, 5
+bind = $sideMod SHIFT, 6, movetoworkspacesilent, 6
+bind = $sideMod SHIFT, 7, movetoworkspacesilent, 7
+bind = $sideMod SHIFT, 8, movetoworkspacesilent, 8
+bind = $sideMod SHIFT, 9, movetoworkspacesilent, 9
+bind = $sideMod SHIFT, 0, movetoworkspacesilent, 10
+bind = $sideMod SHIFT, MINUS, movetoworkspacesilent, 11
+
+# Example special workspace (scratchpad)
+# bind = $mainMod, S, togglespecialworkspace, magic
+# bind = $mainMod SHIFT, S, movetoworkspace, special:magic
+
+# Scroll through existing workspaces with mainMod + scroll
+bind = $mainMod, mouse_down, workspace, e+1
+bind = $mainMod, mouse_up, workspace, e-1
+
+# Move/resize windows with mainMod + LMB/RMB and dragging
+bindm = $mainMod, mouse:272, movewindow
+bindm = $mainMod, mouse:273, resizewindow
+
+# Laptop multimedia keys for volume and LCD brightness
+# & notify-send -r 91190 "$(printf '%s' $(wpctl get-volume @DEFAULT_AUDIO_SINK@))"
+# & notify-send -r 91190 "Brightness: $(printf '%d' $(brightnessctl g))%"
+# & notify-send -r 91190 "Brightness: $(printf '%d' $(brightnessctl g))%"
+bindel = ,XF86AudioRaiseVolume, exec, volumectl +
+bindel = ,XF86AudioLowerVolume, exec, volumectl -
+bindel = ,XF86AudioMute, exec, wpctl volumectl %
+bindel = ,XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindel = ,XF86MonBrightnessUp, exec, lightctl up
+bindel = ,XF86MonBrightnessDown, exec, lightctl down 
+
+
+# Requires playerctl
+bindl = , XF86AudioNext, exec, playerctl next
+bindl = , XF86AudioPause, exec, playerctl play-pause
+bindl = , XF86AudioPlay, exec, playerctl play-pause
+bindl = , XF86AudioPrev, exec, playerctl previous
+
+
+# For hyprswitch ( alt tabbing in hyprland skull )
+$key = tab
+$mod = alt
+
+bind = $mod , $key, exec, hyprswitch gui --mod-key $mod --key $key --max-switch-offset 9 
+
+
+##############################
+###### G E S T U R E S #######
+##############################
+
+gesture = 4, horizontal, scale: 1.4, workspace
+
+# windows style volume up and down 
+gesture = 4, up, dispatcher, exec, volumectl +
+gesture = 4, down, dispatcher, exec, volumectl -
+
+gesture = 3, up, scale: 2.5, dispatcher, exec, hyprswitch gui --mod-key $mod --key $key --max-switch-offset 9
+
+
+##############################
+### WINDOWS AND WORKSPACES ###
+##############################
+
+# See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+# See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for workspace rules
+
+windowrulev2 = stayfocused, class:(albert)
+windowrulev2 = noborder, class:(albert)
+windowrulev2 = noanim,class:(albert)
+windowrulev2 = float, class:(albert)
+
+windowrulev2 = stayfocused, class:(ulauncher)
+windowrulev2 = noborder, class:(ulauncher)
+windowrulev2 = noanim,class:(ulauncher)
+windowrulev2 = float, class:(ulauncher)
+
+windowrulev2 = float, initialClass: (com.github.hluk.copyq)
+windowrulev2 = noanim, initialClass: (com.github.hluk.copyq)
+windowrulev2 = size 800 500, initialClass: (com.github.hluk.copyq)
+# windowrulev2 = move onscreen cursor, initialClass:^(com.github.hluk.copyq)$
+windowrulev2 = opacity 0.9 override, class:(thunar)
+
+windowrulev2 = opacity 0.2 override, class:^(Dunstify)$
+windowrulev2 = opacity 0.2 override, class:^(Dunst)$
+windowrulev2 = noanim, class:^(rofi)$
+
+windowrulev2 = opacity 0.0 override, class:^(xwaylandvideobridge)$
+windowrulev2 = noanim, class:^(xwaylandvideobridge)$
+windowrulev2 = noinitialfocus, class:^(xwaylandvideobridge)$
+windowrulev2 = maxsize 1 1, class:^(xwaylandvideobridge)$
+windowrulev2 = noblur, class:^(xwaylandvideobridge)$
+windowrulev2=nofocus,class:^jetbrains-(?!toolbox),floating:1,title:^win\d+$
+windowrule=noinitialfocus,class:^jetbrains-.*$,floating:1,title:^$|^\s$|^win\d+$
+
+# Example windowrule v1
+# windowrule = float, ^(kitty)$
+
+# Example windowrule v2
+# windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
+
+# Ignore maximize requests from apps. You'll probably like this.
+windowrulev2 = suppressevent maximize, class:.*
+
+# Fix some dragging issues with XWayland
+windowrulev2 = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
+
+layerrule = blur,rofi,wezterm
+layerrule = blur,waybar
+layerrule = blur,Dunst
+
+layerrule = blur, swaync-control-center
+layerrule = blur, swaync-notification-window
+layerrule = ignorezero, swaync-notification-window
+layerrule = animation slide right, swaync-control-center
+layerrule = ignorezero, swaync-control-center
+layerrule = blur, swaync
+
+
+# # # # # # # #
+# SMART GAPS #
+# # # # # # # 
+
+# workspace = w[tv1], gapsout:0, gapsin:0
+# workspace = f[1], gapsout:0, gapsin:0
+# windowrulev2 = bordersize 0, floating:0, onworkspace:w[tv1]
+# windowrulev2 = rounding 0, floating:0, onworkspace:w[tv1]
+# windowrulev2 = bordersize 0, floating:0, onworkspace:f[1]
+# windowrulev2 = rounding 0, floating:0, onworkspace:f[1]
