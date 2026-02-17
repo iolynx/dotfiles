@@ -4,7 +4,7 @@ return {
 	lazy = false,
 	opts = {
 		animate = { enabled = true },
-		notifier = { enabled = true },
+		notifier = { enabled = false },
 		terminal = { enabled = true },
 		dashboard = {
 			width = 60,
@@ -15,8 +15,6 @@ return {
 			preset = {
 				pick = nil,
 				header = [[
-	                                  
-	                                  
 	                                  
 	   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆         
 	    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦      
@@ -30,16 +28,15 @@ return {
 	      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆    
 	       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃    
 	                                  
-	       N   E   O   V   I   M     
+	      N   E   O   V   I   M     
 				]],
 				keys = {
 
 					{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-					{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
 					{
 						icon = " ",
 						key = "g",
-						desc = "Live Grep",
+						desc = "Grep",
 						action = ":lua Snacks.dashboard.pick('live_grep')",
 					},
 					{
@@ -54,8 +51,7 @@ return {
 						desc = "Config",
 						action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
 					},
-					{ icon = "", key = "w", desc = "Restore Last Session", action = "<cmd>SessionRestore<CR>" },
-					{ icon = "󱈆", key = "s", desc = "Search Sessions", action = "<cmd>SessionSearch<CR>" },
+					{ icon = "", key = "w", desc = "Restore Last Session", action = "<cmd>AutoSession restore<CR>" },
 					{
 						icon = "󰒲 ",
 						key = "l",

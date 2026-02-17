@@ -1,6 +1,7 @@
 return {
 	"nvim-lualine/lualine.nvim",
 	config = function()
+		vim.cmd.colorscheme("kanagawa")
 		local kanagawa = require("kanagawa.colors").setup()
 		local palette_colors = kanagawa.palette
 		local transparentbg = nil

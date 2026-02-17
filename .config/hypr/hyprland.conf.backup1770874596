@@ -416,5 +416,3 @@ source = ./dms/outputs.conf
 
 # HyprEmoji config
 source = ~/.config/hypremoji/hypremoji.conf
-
-source = ./dms/cursor.conf

@@ -39,8 +39,8 @@ vim.keymap.set("n", "<S-y>", '"+y')
 vim.keymap.set("i", "<C-S-v>", '<Esc>"+pa')
 
 -- For switching between buffers using Alt H, L
-vim.api.nvim_set_keymap("n", "<M-h>", ":BufferLineCyclePrev<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<M-l>", ":BufferLineCycleNext<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<M-h>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<M-l>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("n", "<M-i>", ":bd!<CR>", { noremap = true })
 
 -- neogen
@@ -97,3 +97,35 @@ map("n", "<leader>bw", "<Cmd>BufferOrderByWindowNumber<CR>", opts)
 -- for shifting lines with J K etc (i think)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv-gv")
 vim.keymap.set("v", "K", ":m '>-2<CR>gv-gv")
+
+----  GIT SHIT  ----
+local keymap = vim.keymap.set
+
+-- ==========================================
+-- FUGITIVE (The Workhorse)
+-- ==========================================
+
+-- 1. Open the Git Status window (The Control Center)
+keymap("n", "<leader>gs", vim.cmd.Git, opts)
+
+-- 2. Open a 3-Way Diff Split (For resolving conflicts!)
+-- usage: Open the conflicted file, then press <leader>gd
+keymap("n", "<leader>gd", ":Gvdiffsplit!<CR>", opts)
+
+-- 3. CONFLICT RESOLUTION (The "Ours" vs "Theirs" shortcuts)
+-- Only works inside the 3-way diff view
+keymap("n", "<leader>gco", ":diffget //2<CR>", opts) -- Git Choose Ours   (Target/Left pane)
+keymap("n", "<leader>gct", ":diffget //3<CR>", opts) -- Git Choose Theirs (Merge/Right pane)
+
+-- ==========================================
+-- DIFFVIEW (The Browser)
+-- ==========================================
+
+-- 1. Open Diffview (View all changed files in a tree)
+keymap("n", "<leader>do", ":DiffviewOpen<CR>", opts)
+
+-- 2. Close Diffview
+keymap("n", "<leader>dc", ":DiffviewClose<CR>", opts)
+
+-- 3. File History (Like git log for the current file)
+keymap("n", "<leader>dh", ":DiffviewFileHistory %<CR>", opts)

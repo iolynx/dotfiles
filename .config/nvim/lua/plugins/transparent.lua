@@ -2,6 +2,7 @@ return {
 	"xiyaowong/transparent.nvim",
 
 	enabled = true,
+	event = "UIEnter",
 	config = function()
 		require("transparent").setup({
 			-- table: default groups
@@ -34,6 +35,7 @@ return {
 
 				"BlinkCmpMenu",
 				"BlinkCmpMenuBorder",
+				"BlinkCmpMenuBorder",
 				"FloatBorder",
 			},
 			-- table: groups you don't want to clear
@@ -43,6 +45,11 @@ return {
 			-- function: code to be executed after highlight groups are cleared
 			-- Also the user event "TransparentClear" will be triggered
 			on_clear = function() end,
+		})
+		vim.api.nvim_create_autocmd("ColorScheme", {
+			callback = function()
+				vim.cmd("TransparentEnable")
+			end,
 		})
 	end,
 }

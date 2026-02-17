@@ -4,7 +4,7 @@
 # ==================
 # VARIABLES
 # ==================
-$terminal = alacritty
+$terminal = foot
 $fileManager = thunar
 $browser = zen-browser
 $emoji = rofi -show emoji -no-fixed-num-lines
@@ -14,26 +14,26 @@ $emoji = rofi -show emoji -no-fixed-num-lines
 # ==================
 # Monitors from existing configuration
 monitor = eDP-1,1920x1080@144,0x0,1
-monitor = eDP-2,1920x1080@144,0x0,1
 # monitor = HDMI-A-1,1920x1080@60,0x0,1
+
+monitor = , preferred,auto,auto
 
 # ==================
 # STARTUP APPS
 # ==================
 exec-once = dbus-update-activation-environment --systemd --all
 exec-once = systemctl --user start hyprland-session.target
-# exec-once = bash -c "wl-paste --watch cliphist store &"
-# exec-once = nvibrant 512 512 800
-exec-once = hyprshade on vibrance.glsl
+exec-once = bash -c "wl-paste --watch cliphist store &"
+exec-once = nvibrant 512 512 800
 exec-once = copyq --start-server
 exec-once = rog-control-center & disown
-exec-once = bazooka
+exec-once = hyprswitch init --show-title --size-factor 5.4 & 
 # exec-once = ~/Personal/bazooka/target/debug/bazooka --service
 
 exec-once = [workspace 1] $browser
-exec-once = [workspace 2 silent] $terminal
-exec-once = [workspace special silent] obsidian
-# exec-once = [workspace 4 silent] /usr/bin/ferdium %U
+exec-once = [workspace 2] $terminal
+# exec-once = [workspace 8 silent] spotify-launcher
+exec-once = [workspace 4] /usr/bin/ferdium %U
 
 # ==================
 # INPUT CONFIG
@@ -70,10 +70,6 @@ general {
     layout = dwindle
 }
 
-
-misc {
-    vfr = true
-}
 # ==================
 # DECORATION
 # ==================
@@ -152,40 +148,30 @@ misc {
 # ==================
 # WINDOW RULES
 # ==================
-# ─── WezTerm ─────────────────────────────────────────────
+windowrulev2 = tile, class:^(org\.wezfurlong\.wezterm)$
 
-windowrule = match:class ^(org\.wezfurlong\.wezterm)$, tile on, decorate off
+windowrulev2 = rounding 12, class:^(org\.gnome\.)
+windowrulev2 = noborder, class:^(org\.gnome\.)
 
-# ─── GNOME apps (rounding + no border) ──────────────────
+windowrulev2 = tile, class:^(gnome-control-center)$
+windowrulev2 = tile, class:^(pavucontrol)$
+windowrulev2 = tile, class:^(nm-connection-editor)$
 
-windowrule = match:class ^(org\.gnome\.), rounding 12, decorate off
+windowrulev2 = float, class:^(gnome-calculator)$
+windowrulev2 = float, class:^(galculator)$
+windowrulev2 = float, class:^(blueman-manager)$
+windowrulev2 = float, class:^(org\.gnome\.Nautilus)$
+windowrulev2 = float, class:^(steam)$
+windowrulev2 = float, class:^(xdg-desktop-portal)$
 
-windowrule = match:class ^(gnome-control-center)$, tile on
-windowrule = match:class ^(pavucontrol)$, tile on
-windowrule = match:class ^(nm-connection-editor)$, tile on
+windowrulev2 = noborder, class:^(org\.wezfurlong\.wezterm)$
+windowrulev2 = noborder, class:^(Alacritty)$
+windowrulev2 = noborder, class:^(zen)$
+windowrulev2 = noborder, class:^(com\.mitchellh\.ghostty)$
+windowrulev2 = noborder, class:^(kitty)$
 
-# ─── Floating utilities ──────────────────────────────────
-
-windowrule = match:class ^(gnome-calculator)$, float on
-windowrule = match:class ^(galculator)$, float on
-windowrule = match:class ^(blueman-manager)$, float on
-windowrule = match:class ^(org\.gnome\.Nautilus)$, float on
-windowrule = match:class ^(steam)$, float on
-windowrule = match:class ^(xdg-desktop-portal)$, float on
-windowrule = match:class ^(zoom)$, float on
-windowrule = match:title ^(.*Developer Tools.*)$, float on
-windowrule = match:class (zoom), float on
-
-# ─── Borderless terminals ────────────────────────────────
-
-windowrule = match:class ^(Alacritty)$, decorate off
-windowrule = match:class ^(zen)$, decorate off
-windowrule = match:class ^(com\.mitchellh\.ghostty)$, decorate off
-windowrule = match:class ^(kitty)$, decorate off
-
-# ─── Firefox PiP ─────────────────────────────────────────
-
-windowrule = match:class ^(firefox)$ match:title ^(Picture-in-Picture)$, float on
+windowrulev2 = float, class:^(firefox)$, title:^(Picture-in-Picture)$
+windowrulev2 = float, class:^(zoom)$
 
 windowrule {
     name = copyqstuff
@@ -236,9 +222,9 @@ $mainMod = ALT
 $sideMod = SUPER
 
 # === Application Launchers ===
-bind = $mainMod, RETURN, exec, $terminal
+bind = $mainMod, RETURN, exec, foot
 bind = $mainMod, space, exec, dms ipc call spotlight toggle
-# bind = $mainMod, Space, exec, bazooka toggle
+# bind = $mainMod, Space, exec, ~/Personal/bazooka/target/debug/bazooka 
 # bind = $sideMod, V, exec, dms ipc call clipboard toggle
 bind = $sideMod, V, exec, copyq show
 # bind = $mod, M, exec, dms ipc call processlist focusOrToggle
@@ -258,8 +244,8 @@ bind = $mainMod SHIFT, E, exit
 bind = CTRL ALT, Delete, exec, dms ipc call processlist focusOrToggle
 
 # === Audio Controls ===
-bindel = , XF86AudioRaiseVolume, exec, dms ipc call audio increment 2
-bindel = , XF86AudioLowerVolume, exec, dms ipc call audio decrement 2
+bindel = , XF86AudioRaiseVolume, exec, dms ipc call audio increment 3
+bindel = , XF86AudioLowerVolume, exec, dms ipc call audio decrement 3
 bindl = , XF86AudioMute, exec, dms ipc call audio mute
 bindl = , XF86AudioMicMute, exec, dms ipc call audio micmute
 
@@ -305,7 +291,7 @@ bind = $sideMod CTRL, left, focusmonitor, l
 bind = $sideMod CTRL, right, focusmonitor, r
 bind = $sideMod CTRL, H, focusmonitor, l
 bind = $sideMod CTRL, J, focusmonitor, d
-
+bind = $sideMod CTRL, K, focusmonitor, u
 bind = $sideMod CTRL, L, focusmonitor, r
 
 # === Move to Monitor ===
@@ -336,7 +322,6 @@ bind = $mainMod, 8, workspace, 8
 bind = $mainMod, 9, workspace, 9
 bind = $mainMod, 0, workspace, 10
 bind = $mainMod, MINUS, workspace, 11
-bind = $mainMod, s, togglespecialworkspace
 
 # === Move to Numbered Workspaces ===
 bind = $mainMod SHIFT, 1, movetoworkspace, 1
@@ -350,7 +335,6 @@ bind = $mainMod SHIFT, 8, movetoworkspace, 8
 bind = $mainMod SHIFT, 9, movetoworkspace, 9
 bind = $mainMod SHIFT, 0, movetoworkspace, 10
 bind = $mainMod SHIFT, MINUS, movetoworkspace, 11
-bind = $mainMod SHIFT, S, movetoworkspace, special
 
 # $powermenu = ~/.local/bin/power-menu.sh
 $fileManager = thunar
@@ -397,9 +381,6 @@ bind = $sideMod, C, exec, hyprpicker -a --format=rgb
 bind = $sideMod SHIFT, P, dpms, toggle
 bind = $sideMod, Q, exec, dms ipc call powermenu toggle
 
-# === Emojis ====
-bind = $sideMod, period, exec, bemoji -t -c -n
-
 ##############################
 ###### G E S T U R E S #######
 ##############################
@@ -407,14 +388,7 @@ bind = $sideMod, period, exec, bemoji -t -c -n
 gesture = 4, horizontal, scale: 1.4, workspace
 
 # windows style volume up and down 
-gesture = 4, up, dispatcher, exec, dms ipc call audio increment 10
-gesture = 4, down, dispatcher, exec, dms ipc call audio decrement 10
+gesture = 4, up, dispatcher, exec, volumectl +
+gesture = 4, down, dispatcher, exec, volumectl -
 
 gesture = 3, up, scale: 2.5, dispatcher, exec, hyprswitch gui --mod-key $mod --key $key --max-switch-offset 9
-
-source = ./dms/outputs.conf
-
-# HyprEmoji config
-source = ~/.config/hypremoji/hypremoji.conf
-
-source = ./dms/cursor.conf
