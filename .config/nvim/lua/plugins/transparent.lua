@@ -49,6 +49,7 @@ return {
 		vim.api.nvim_create_autocmd("ColorScheme", {
 			callback = function()
 				vim.cmd("TransparentEnable")
+				-- vim.cmd("TransparentDisable")
 			end,
 		})
 	end,

@@ -1,7 +1,7 @@
 -- TODO: ENABLE INDENTLINE LIKE IN LAZYVIM
 return {
 	"lukas-reineke/indent-blankline.nvim",
-	enabled = false,
+	enabled = true,
 	opts = function()
 		Snacks.toggle({
 			name = "Indention Guides",

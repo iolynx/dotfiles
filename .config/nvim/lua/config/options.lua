@@ -104,11 +104,12 @@ if vim.g.neovide then
 		.. "a:blinkwait200-blinkoff500-blinkon500-Cursor/lCursor"
 	-- vim.opt.guicursor = "n-v-c:block,i-ci-ve:block,r-cr:hor20"   -- only block
 
-	vim.g.neovide_opacity = 0.45
+	vim.g.neovide_opacity = 0.55
 	vim.g.neovide_window_blurred = true
 	vim.g.neovide_floating_blur_amount_x = 1.5
 	vim.g.neovide_floating_blur_amount_y = 1.5
 	vim.g.neovide_fullscreen = false
+	vim.g.neovide_scroll_animation_length = 0.16
 
 	-- cursor animation length (lesser is faster)
 	vim.g.neovide_cursor_animation_length = 0.015
@@ -118,4 +119,5 @@ if vim.g.neovide then
 	-- vim.opt.guifont = "0xProto\\ Nerd\\ Font:h11"
 	vim.opt.guifont = "Iosevka\\ Nerd\\ Font:h14"
 	-- vim.opt.guifont = "CaskaydiaCove \\NF:h11"
+	-- vim.opt.guifont = "MartianMono\\ Nerd\\ Font:h12"
 end

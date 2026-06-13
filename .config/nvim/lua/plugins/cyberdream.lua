@@ -3,7 +3,7 @@ return {
 	lazy = false,
 	priority = 1000,
 	transparent = true,
-	saturation = 0.8,
+	saturation = 0.3,
 	extensions = {
 		telescope = true,
 		notify = true,

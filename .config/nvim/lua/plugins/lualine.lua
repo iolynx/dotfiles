@@ -125,13 +125,6 @@ return {
 			color = { fg = palette_colors.springViolet2, gui = "bold" },
 		})
 
-		ins_right({
-			function()
-				return os.date("%I:%M %p")
-			end,
-			color = { fb = transparentbg, bg = palette_colors.dragonGray },
-		})
-
 		-- ins_right {
 		--   function()
 		--     -- return '▊'
