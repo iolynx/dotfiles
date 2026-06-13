@@ -1,0 +1,64 @@
+
+[window]
+padding = { x = 10, y = 10 }
+opacity = 0.82
+dynamic_padding = true
+
+[font.normal]
+# family = "ZedMono Nerd Font"
+family = "FantasqueSansM Nerd Font"
+# family = "JetBrains Mono Nerd Font"
+
+# 13px height at 8px font ≈ 1.625
+[font.offset]
+y = 3
+
+[font.glyph_offset]
+y = 0
+
+# Use this if spacing feels off
+[font]
+builtin_box_drawing = true
+size = 14
+
+[scrolling]
+history = 10000
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }
+
+[colors.primary]
+background = "#141218"
+foreground = "#e6e0e8"
+
+[colors.selection]
+background = "#4e3d75"
+foreground = "#e6e0e8"
+
+[colors.cursor]
+text = "#141218"
+cursor = "#d0bcfe"
+
+[colors.normal]
+black   = "#141218"
+red     = "#df5141"
+green   = "#6ed675"
+yellow  = "#dbd97b"
+blue    = "#926ce2"
+magenta = "#a296be"
+cyan    = "#d0bcfe"
+white   = "#abb2bf"
+
+[colors.bright]
+black   = "#5c6370"
+red     = "#e06a5f"
+green   = "#86e08b"
+yellow  = "#e8e697"
+blue    = "#dfc9ff"
+magenta = "#7d6acd"
+cyan    = "#8a6ab4"
+white   = "#ffffff"
+
+[colors.dim]
+black = "#000000"
+

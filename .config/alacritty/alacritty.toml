@@ -1,0 +1,58 @@
+[general]
+import = [
+  "~/.config/alacritty/dank-theme.toml"
+]
+
+[window]
+decorations = "None"
+padding = { x = 10, y = 10 }
+# opacity = 0.82
+opacity = 0.82
+dynamic_padding = true
+
+[font.normal]
+family = "ZedMono Nerd Font"
+# family = "FantasqueSansM Nerd Font"
+# family = "Departure Mono"  # minecraft ahh font
+# family = "MartianMono Nerd Font"
+# family = "GeistMono Nerd Font"
+# family = "JetBrains Mono Nerd Font"
+
+# 13px height at 8px font ≈ 1.625
+[font.offset]
+y = 3
+
+[font.glyph_offset]
+y = 0
+
+# Use this if spacing feels off
+[font]
+builtin_box_drawing = true
+size = 15
+
+[scrolling]
+history = 10000
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }
+unfocused_hollow = true
+
+[mouse]
+hide_when_typing = true
+
+[selection]
+save_to_clipboard = false
+
+[bell]
+duration = 0
+
+[keyboard]
+bindings = [
+  { key = "C",       mods = "Control|Shift", action = "Copy"  },
+  { key = "V",       mods = "Control|Shift", action = "Paste" },
+  { key = "N",       mods = "Control|Shift", action = "SpawnNewInstance" },
+  { key = "Equals",  mods = "Control|Shift", action = "IncreaseFontSize" },
+  { key = "Minus",   mods = "Control",       action = "DecreaseFontSize" },
+  { key = "Key0",    mods = "Control",       action = "ResetFontSize"    },
+  { key = "Enter",   mods = "Shift",         chars = "\n" },
+]
